@@ -26,3 +26,12 @@ Converts the update.img file to data.bin
 Flashes the data.bin output file to the TinkerBoard S or SD card 
 
 *Currently unavailable
+
+### make all / make
+Run all items in the following order:
+1. prereq
+2. download
+3. copy
+4. build
+5. convert
+6. flash
