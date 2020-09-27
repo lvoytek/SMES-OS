@@ -15,7 +15,8 @@ convert:build
 build:~/bin/repo copy
 
 .PHONY:copy
-copy:download 
+copy:download src/*
+	cp -r src/* AndroidBuild/
 
 .PHONY:download
 download:.dwnld
