@@ -9,10 +9,15 @@ all:flash
 flash:convert
 
 .PHONY:convert
-convert:build
+convert:out/update.img
+
+out/update.img:build
+	mkdir -p out/
+	cp AndroidBuild/RKTools/linux/Linux_Pack_Firmware/rockdev/update.img out/
 
 .PHONY:build
 build:~/bin/repo copy
+	(source build/envsetup.sh; lunch rk3288-userdebug; cd kernel/; make ARCH=arm rockchip_defconfig; make ARCH=arm rk3288-miniarm.img -j$(THREADS); cd ../u-boot; make rk3288_secure_defconfig; make -j$(THREADS); cd ..; export LC_ALL=C; make -j$(THREADS); ./mkimage.sh; cd RKTools/linux/Linux_Pack_Firmware/rockdev; ./collectImages.sh; ./mkupdate.sh)
 
 .PHONY:copy
 copy:download src/*
