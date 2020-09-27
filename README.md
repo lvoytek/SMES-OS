@@ -35,3 +35,10 @@ Run all items in the following order:
 4. build
 5. convert
 6. flash
+
+### make clean
+Removes the Android source directory and installation flags so that a fresh version may be installed
+
+### Variables:
+THREADS: The number of threads to use when downloading or building. Defaults to 8
+OS: The Linux OS in use. Defaults to UBUNTU
