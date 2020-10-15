@@ -17,7 +17,19 @@ out/update.img:build
 
 .PHONY:build
 build:~/bin/repo copy
-	(cd AndroidBuild; source build/envsetup.sh; lunch rk3288-userdebug; (cd kernel/; make ARCH=arm rockchip_defconfig; make ARCH=arm rk3288-miniarm.img -j$(THREADS); (cd ../u-boot; make rk3288_secure_defconfig; make -j$(THREADS); (cd ..; export LC_ALL=C; make -j$(THREADS); ./mkimage.sh; cd RKTools/linux/Linux_Pack_Firmware/rockdev; ./collectImages.sh; ./mkupdate.sh))))
+	pushd AndroidBuild; \
+		source build/envsetup.sh && \
+		lunch rk3288-userdebug; \
+		$(MAKE) -C kernel/ ARCH=arm PYTHON=python2 rockchip_defconfig; \
+		$(MAKE) -C kernel/ ARCH=arm PYTHON=python2 rk3288-miniarm.img -j$(THREADS); \
+		$(MAKE) -C u-boot/ PYTHON=python2 rk3288_secure_defconfig; \
+		$(MAKE) -C u-boot/ PYTHON=python2 -j$(THREADS); \
+		export LC_ALL=C; \
+		$(MAKE) PYTHON=python2 -j$(THREADS); \
+		./mkimage.sh; \
+		pushd RKTools/linux/Linux_Pack_Firmware/rockdev; \
+			./collectImages.sh; \
+			./mkupdate.sh
 
 .PHONY:copy
 copy:download src/*
