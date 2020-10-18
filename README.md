@@ -45,4 +45,5 @@ Removes the Android source directory and installation flags so that a fresh vers
 
 ### Variables:
 THREADS: The number of threads to use when downloading or building. Defaults to 8
+
 OS: The Linux OS in use. Defaults to UBUNTU
