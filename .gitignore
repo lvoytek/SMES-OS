@@ -4,4 +4,5 @@ AndroidBuild/
 .repo
 .copy
 .bld
+.cnvrt
 out/
