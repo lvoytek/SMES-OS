@@ -22,14 +22,14 @@ Make sure /usr/bin/env python is set to Python 2
 If the build process fails at any point you may be using too many threads, reduce the THREADS variable and try again
 
 ### make convert
-Converts the update.img file to data.bin
+Converts the update.img file to data.bin using SpiImageTools
 
-*Currently unavailable - need to interact with the obscure SPIImageTool exe file to create it
+For information on how to use this program check out [SMES_compilation_instructions.pdf](SMES_compilation_instructions.pdf)
+
+After closing the GUI data.bin will appear in the out/ folder
 
 ### make flash
 Flashes the data.bin output file to the TinkerBoard S or SD card 
-
-*Currently unavailable
 
 ### make all / make
 Run all items in the following order:
