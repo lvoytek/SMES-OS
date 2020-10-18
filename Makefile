@@ -11,12 +11,14 @@ flash:convert
 .PHONY:convert
 convert:out/update.img
 
-out/update.img:build
+out/update.img:.bld
 	mkdir -p out/
 	cp AndroidBuild/RKTools/linux/Linux_Pack_Firmware/rockdev/update.img out/
 
 .PHONY:build
-build:~/bin/repo copy
+build:.bld
+
+.bld:.repo .copy
 	pushd AndroidBuild; \
 		source build/envsetup.sh && \
 		lunch rk3288-userdebug; \
@@ -30,10 +32,14 @@ build:~/bin/repo copy
 		pushd RKTools/linux/Linux_Pack_Firmware/rockdev; \
 			./collectImages.sh; \
 			./mkupdate.sh
+	touch .bld
 
 .PHONY:copy
-copy:download src/*
+copy:.copy
+
+.copy:.dwnld src/*
 	cp -r src/* AndroidBuild/
+	touch .copy
 
 .PHONY:download
 download:.dwnld
@@ -43,12 +49,13 @@ download:.dwnld
 	(cd AndroidBuild/;repo init -u https://git@bitbucket.org/TinkerBoard_Android/manifest.git -b sbc/tinkerboard/asus/Android-7.1.2;repo sync -j$(THREADS) -c)
 	touch .dwnld
 
-~/bin/repo:prereq
+.repo:.prereq
 	mkdir -p ~/bin
 	sudo curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
 	chmod a+x ~/bin/repo
 	echo 'export PATH="~/bin:$$PATH"' | tee -a ~/.bashrc
 	PATH="~/bin:$$PATH"
+	touch .repo
 
 .PHONY:prereq
 prereq:.prereq

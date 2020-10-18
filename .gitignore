@@ -1,4 +1,7 @@
 AndroidBuild/
 .dwnld
 .prereq
+.repo
+.copy
+.bld
 out/
