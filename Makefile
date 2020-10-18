@@ -7,16 +7,17 @@ all:flash
 
 .PHONY:flash
 flash:.cnvrt
+	tools/flash.sh
 
 .PHONY:convert
 convert:.cnvrt
 
 .cnvrt:out/update.img
-	- sudo wine SpiImageTools.exe
-	- sudo rm -f boot0.bin
-	- sudo rm -f boot1.bin
-	- sudo rm -rf Log/
-	sudo mv data.bin out/
+	- sudo wine tools/SpiImageTools.exe
+	- sudo rm -f tools/boot0.bin
+	- sudo rm -f tools/boot1.bin
+	- sudo rm -rf tools/Log/
+	sudo mv tools/data.bin out/
 	touch .cnvrt
 
 out/update.img:.bld
