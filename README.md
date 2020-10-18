@@ -17,6 +17,10 @@ Copy custom source files over to the Android source directory in preparation for
 ### make build
 Builds the update.img file that can be transformed and flashed to the device
 
+Make sure /usr/bin/env python is set to Python 2
+
+If the build process fails at any point you may be using too many threads, reduce the THREADS variable and try again
+
 ### make convert
 Converts the update.img file to data.bin
 
