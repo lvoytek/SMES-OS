@@ -68,6 +68,7 @@ build:.bld
 copy:.copy
 
 .copy:.dwnld src/*
+	git submodule update --init --recursive
 	cp -r src/* AndroidBuild/
 	touch .copy
 
