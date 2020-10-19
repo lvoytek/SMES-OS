@@ -1,0 +1,3 @@
+[submodule "src/packages/apps/SMES-Android"]
+	path = src/packages/apps/SMES-Android
+	url = https://github.com/lvoytek/SMES-Android.git
