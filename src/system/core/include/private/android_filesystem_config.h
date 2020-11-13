@@ -38,8 +38,6 @@
  * DO NOT EVER RENUMBER
  */
 
-#define AID_SMES			250 /* secure middleware experimental user */
-
 #define AID_ROOT             0  /* traditional unix root user */
 
 #define AID_SYSTEM        1000  /* system server */
@@ -119,6 +117,7 @@
 #define AID_NET_BT_STACK  3008  /* bluetooth: access config files */
 #define AID_READPROC      3009  /* Allow /proc read access */
 #define AID_WAKELOCK      3010  /* Allow system wakelock read/write access */
+#define AID_SMES		  3011	/* secure middleware experimental user */
 
 /* The range 5000-5999 is also reserved for OEM, and must never be used here. */
 #define AID_OEM_RESERVED_2_START 5000
@@ -224,11 +223,11 @@ static const struct android_id_info android_ids[] = {
     { "net_bt_stack",  AID_NET_BT_STACK, },
     { "readproc",      AID_READPROC, },
     { "wakelock",      AID_WAKELOCK, },
+	{ "smes",			AID_SMES, },
 
     { "everybody",     AID_EVERYBODY, },
     { "misc",          AID_MISC, },
-    { "nobody",        AID_NOBODY, },
-	{ "smes",			AID_SMES, }
+    { "nobody",        AID_NOBODY, }
 };
 
 #define android_id_count \
