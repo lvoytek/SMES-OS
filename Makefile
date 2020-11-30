@@ -67,9 +67,10 @@ build:.bld
 .PHONY:copy
 copy:.copy
 
-.copy:.dwnld src/*
+.copy:.dwnld src/
 	git submodule update --init --recursive
 	cp -r src/* AndroidBuild/
+	cp -r src/.[^.]* AndroidBuild/
 	touch .copy
 
 .PHONY:download
